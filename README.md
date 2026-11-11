@@ -254,7 +254,7 @@ component keeps its own defaults.
 
 For detailed configuration options and advanced usage.
 
-- [Testing Guide](docs/testing.md)
+- 🧪 [Testing Guide](docs/testing.md)
 
 ## Package information
 
