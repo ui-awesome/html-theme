@@ -2,54 +2,35 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Component\Bootstrap5\Tests\Dropdown;
+namespace UIAwesome\Html\Theme\Bootstrap\Tests\Dropdown;
 
-use PHPForge\Support\Assert;
-use UIAwesome\Html\Component\Bootstrap5\{Dropdown, Item};
+use Closure;
+use Testo\Assert;
+use Testo\Data\DataProvider;
+use Testo\Filter\Group;
+use Testo\Test;
+use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
+use UIAwesome\Html\Theme\Bootstrap\Tests\Provider\DropdownDefaultProvider;
 
 /**
- * Dropdown.
+ * Unit tests for {@see Bootstrap5Theme} and {@see Bootstrap6Theme} default dropdown rendering.
  *
- * This example can be used to show a dropdown menu when clicking on a button.
- *
- * @link https://getbootstrap.com/docs/5.3/components/dropdowns/
- *
- * @psalm-suppress PropertyNotSetInConstructor
+ * {@see DropdownDefaultProvider} for test case data providers.
  */
-final class DefaultTest extends \PHPUnit\Framework\TestCase
+#[Test]
+#[Group('theme')]
+final class DefaultTest
 {
-    public function testRender(): void
+    /**
+     * @param Closure(): string $render
+     */
+    #[DataProvider(DropdownDefaultProvider::class . '::render')]
+    public function render(string $expected, Closure $render): void
     {
-        Assert::equalsWithoutLE(
-            <<<HTML
-            <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" aria-expanded="false" data-bs-toggle="dropdown">
-            Dropdown button
-            </button>
-            <div id="dropdown">
-            <ul class="dropdown-menu">
-            <li>
-            <a class="dropdown-item" href="#">Action</a>
-            </li>
-            <li>
-            <a class="dropdown-item" href="#">Another actionc</a>
-            </li>
-            <li>
-            <a class="dropdown-item" href="#">Something else here</a>
-            </li>
-            </ul>
-            </div>
-            </div>
-            HTML,
-            Dropdown::widget()
-                ->cookbook('default')
-                ->id('dropdown')
-                ->items(
-                    Item::widget()->label('Action')->link('#'),
-                    Item::widget()->label('Another actionc')->link('#'),
-                    Item::widget()->label('Something else here')->link('#'),
-                )
-                ->render()
+        Assert::same(
+            $render(),
+            $expected,
+            'Rendered dropdown markup must match.',
         );
     }
 }

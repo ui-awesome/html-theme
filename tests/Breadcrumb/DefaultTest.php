@@ -2,50 +2,35 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Component\Bootstrap5\Tests\Breadcrumb;
+namespace UIAwesome\Html\Theme\Bootstrap\Tests\Breadcrumb;
 
-use PHPForge\Support\Assert;
-use UIAwesome\Html\Component\Bootstrap5\{Breadcrumb, Item};
+use Closure;
+use Testo\Assert;
+use Testo\Data\DataProvider;
+use Testo\Filter\Group;
+use Testo\Test;
+use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
+use UIAwesome\Html\Theme\Bootstrap\Tests\Provider\BreadcrumbDefaultProvider;
 
 /**
- * Breadcrumb.
+ * Unit tests for {@see Bootstrap5Theme} and {@see Bootstrap6Theme} default breadcrumb rendering.
  *
- * Indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.
- *
- * @link https://getbootstrap.com/docs/5.3/components/breadcrumb/
- *
- * @psalm-suppress PropertyNotSetInConstructor
+ * {@see BreadcrumbDefaultProvider} for test case data providers.
  */
-final class DefaultTest extends \PHPUnit\Framework\TestCase
+#[Test]
+#[Group('theme')]
+final class DefaultTest
 {
-    public function testRender(): void
+    /**
+     * @param Closure(): string $render
+     */
+    #[DataProvider(BreadcrumbDefaultProvider::class . '::render')]
+    public function render(string $expected, Closure $render): void
     {
-        Assert::equalsWithoutLE(
-            <<<HTML
-            <nav id="breadcrumb_658fec01ac6cf" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-            <a href="/">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-            <a href="/library">Library</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-            Data
-            </li>
-            </ol>
-            </nav>
-            HTML,
-            Breadcrumb::widget()
-                ->cookbook('default')
-                ->currentPath('/data')
-                ->id('breadcrumb_658fec01ac6cf')
-                ->items(
-                    Item::widget()->label('Home')->link('/'),
-                    Item::widget()->label('Library')->link('/library'),
-                    Item::widget()->label('Data')->link('/data'),
-                )
-                ->render()
+        Assert::same(
+            $render(),
+            $expected,
+            'Rendered breadcrumb markup must match.',
         );
     }
 }

@@ -1,0 +1,21 @@
+---
+on:
+  - pull_request
+  - push
+
+name: quality
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    uses: php-forge/actions/.github/workflows/quality.yml@72def618dcf8a77705c26faa53e9f8b1dc1f53bb # v3.0.1
+    permissions:
+      contents: read
+    with:
+      codespell-config: .github/linters/.codespellrc
+      editorconfig-checker-config: .github/linters/.editorconfig-checker.json
+      markdownlint-config: .github/linters/.markdown-lint.yml
+      yamllint-config: .github/linters/.yamllint.yml
+      yamllint-targets: .github
