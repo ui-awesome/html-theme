@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests;
+namespace UIAwesome\Html\Theme\Tests;
 
 use RuntimeException;
 use Testo\Assert;
@@ -11,13 +11,13 @@ use Testo\Filter\Group;
 use Testo\Test;
 use UIAwesome\Html\Core\Config\ComponentContext;
 use UIAwesome\Html\Core\Theme\ThemeInterface;
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\Provider\RecipeProvider;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\Provider\RecipeProvider;
 
 use function iterator_to_array;
 
 /**
- * Unit tests for {@see Bootstrap5Theme} and {@see Bootstrap6Theme} recipe dispatch and diagnostic recipe names.
+ * Unit tests for {@see Bootstrap5} and {@see Bootstrap6} recipe dispatch and diagnostic recipe names.
  *
  * {@see RecipeProvider} for test case data providers.
  */

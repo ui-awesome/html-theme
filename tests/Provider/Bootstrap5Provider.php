@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Provider;
+namespace UIAwesome\Html\Theme\Tests\Provider;
 
 use UIAwesome\Html\Core\Config\ComponentContext;
 use UIAwesome\Html\Interop\Block;
@@ -10,7 +10,7 @@ use UIAwesome\Html\Interop\Block;
 /**
  * Provides choice recipes and validation scenarios for Bootstrap 5.
  */
-final class Bootstrap5ThemeProvider
+final class Bootstrap5Provider
 {
     /**
      * @return array<string, array{ComponentContext, string, list<array{string, list<mixed>}>}>

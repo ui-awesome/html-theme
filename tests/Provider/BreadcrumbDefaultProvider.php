@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Provider;
+namespace UIAwesome\Html\Theme\Tests\Provider;
 
 use Closure;
 use UIAwesome\Html\Core\Component\{Breadcrumb, Item};
 use UIAwesome\Html\Core\Config\{ComponentContext, Config};
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\Breadcrumb\DefaultTest;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\Breadcrumb\DefaultTest;
 
 /**
  * Provides fixed expected markup and deferred builders for {@see DefaultTest}.
@@ -42,7 +42,7 @@ final class BreadcrumbDefaultProvider
                     </nav>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Breadcrumb::tag()
                         ->config($config, new ComponentContext('breadcrumb'))
@@ -81,7 +81,7 @@ final class BreadcrumbDefaultProvider
                     </nav>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Breadcrumb::tag()
                         ->config($config, new ComponentContext('breadcrumb'))

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Provider;
+namespace UIAwesome\Html\Theme\Tests\Provider;
 
 use Closure;
 use UIAwesome\Html\Core\Config\Config;
 use UIAwesome\Html\Field\Field;
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\FieldRenderingTest;
-use UIAwesome\Html\Theme\Bootstrap\Tests\Support\DemoForm;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\FieldRenderingTest;
+use UIAwesome\Html\Theme\Tests\Support\DemoForm;
 
 /**
  * Provides expected markup and deferred component builders for {@see FieldRenderingTest}.
@@ -36,7 +36,7 @@ final class FieldRenderingProvider
                 </div>
                 HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     $formModel = new DemoForm();
 
@@ -61,7 +61,7 @@ final class FieldRenderingProvider
                 </div>
                 HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     $formModel = new DemoForm();
 
@@ -87,7 +87,7 @@ final class FieldRenderingProvider
                 </div>
                 HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     $formModel = new DemoForm();
 
@@ -112,7 +112,7 @@ final class FieldRenderingProvider
                 </div>
                 HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     $formModel = new DemoForm();
 

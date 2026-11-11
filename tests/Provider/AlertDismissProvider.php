@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Provider;
+namespace UIAwesome\Html\Theme\Tests\Provider;
 
 use Closure;
 use UIAwesome\Html\Core\Component\Alert;
 use UIAwesome\Html\Core\Config\{ComponentContext, Config};
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\Alert\DismissTest;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\Alert\DismissTest;
 
 /**
  * Provides the variant, fixed expected markup, and deferred builders for {@see DismissTest}.
@@ -31,7 +31,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -52,7 +52,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -80,7 +80,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -97,7 +97,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -125,7 +125,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -146,7 +146,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -174,7 +174,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -191,7 +191,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -219,7 +219,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -240,7 +240,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -268,7 +268,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -289,7 +289,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -317,7 +317,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -338,7 +338,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -366,7 +366,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
@@ -387,7 +387,7 @@ final class AlertDismissProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->html('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')

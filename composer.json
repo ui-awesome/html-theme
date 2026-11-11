@@ -1,5 +1,5 @@
 {
-    "name": "ui-awesome/html-theme-bootstrap",
+    "name": "ui-awesome/html-theme",
     "type": "library",
     "description": "Bootstrap 5 and Bootstrap 6 alpha themes for UI Awesome semantic components and form fields.",
     "keywords": [
@@ -44,12 +44,12 @@
     },
     "autoload": {
         "psr-4": {
-            "UIAwesome\\Html\\Theme\\Bootstrap\\": "src"
+            "UIAwesome\\Html\\Theme\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "UIAwesome\\Html\\Theme\\Bootstrap\\Tests\\": "tests"
+            "UIAwesome\\Html\\Theme\\Tests\\": "tests"
         }
     },
     "extra": {
@@ -120,7 +120,7 @@
         "zizmor": "Audits GitHub Actions workflows with zizmor."
     },
     "support": {
-        "issues": "https://github.com/ui-awesome/html-theme-bootstrap/issues",
-        "source": "https://github.com/ui-awesome/html-theme-bootstrap"
+        "issues": "https://github.com/ui-awesome/html-theme/issues",
+        "source": "https://github.com/ui-awesome/html-theme"
     }
 }

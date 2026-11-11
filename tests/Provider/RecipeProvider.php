@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Provider;
+namespace UIAwesome\Html\Theme\Tests\Provider;
 
 use UIAwesome\Html\Core\Config\ComponentContext;
 use UIAwesome\Html\Core\Theme\ThemeInterface;
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
 
 /**
  * Provides the supported semantic contexts and their stable diagnostic recipe names.
@@ -46,8 +46,8 @@ final class RecipeProvider
      * Theme identifiers mapped to the theme class and to its alert variants beyond the shared contextual ones.
      */
     private const array THEMES = [
-        'bootstrap5' => [Bootstrap5Theme::class, []],
-        'bootstrap6' => [Bootstrap6Theme::class, [null]],
+        'bootstrap5' => [Bootstrap5::class, []],
+        'bootstrap6' => [Bootstrap6::class, [null]],
     ];
 
     /**
@@ -102,7 +102,7 @@ final class RecipeProvider
         }
 
         yield 'bootstrap5.toggle.menu' => [
-            Bootstrap5Theme::class,
+            Bootstrap5::class,
             new ComponentContext('toggle', variant: 'menu'),
             'bootstrap5.toggle.menu',
         ];

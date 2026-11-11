@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Provider;
+namespace UIAwesome\Html\Theme\Tests\Provider;
 
 use Closure;
 use UIAwesome\Html\Core\Component\Toggle;
 use UIAwesome\Html\Core\Config\{ComponentContext, Config};
-use UIAwesome\Html\Theme\Bootstrap\Bootstrap5Theme;
-use UIAwesome\Html\Theme\Bootstrap\Tests\Toggle\MenuTest;
+use UIAwesome\Html\Theme\Bootstrap5;
+use UIAwesome\Html\Theme\Tests\Toggle\MenuTest;
 
 /**
  * Provides fixed expected markup and deferred builders for {@see MenuTest}.
@@ -29,7 +29,7 @@ final class ToggleMenuProvider
                     </button>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Toggle::tag()
                         ->config($config, new ComponentContext('toggle', variant: 'menu'))

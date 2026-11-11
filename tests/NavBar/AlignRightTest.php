@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\NavBar;
+namespace UIAwesome\Html\Theme\Tests\NavBar;
 
 use Closure;
 use Testo\Assert;
 use Testo\Data\DataProvider;
 use Testo\Filter\Group;
 use Testo\Test;
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\Provider\NavBarAlignRightProvider;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\Provider\NavBarAlignRightProvider;
 
 /**
- * Unit tests for {@see Bootstrap5Theme} and {@see Bootstrap6Theme} right-aligned navbar rendering.
+ * Unit tests for {@see Bootstrap5} and {@see Bootstrap6} right-aligned navbar rendering.
  *
  * {@see NavBarAlignRightProvider} for test case data providers.
  */

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Provider;
+namespace UIAwesome\Html\Theme\Tests\Provider;
 
 use Closure;
 use UIAwesome\Html\Core\Component\Alert;
 use UIAwesome\Html\Core\Config\{ComponentContext, Config};
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\Alert\DefaultTest;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\Alert\DefaultTest;
 
 /**
  * Provides the variant, fixed expected markup, and deferred builders for {@see DefaultTest}.
@@ -29,7 +29,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->content('A simple danger alert—check it out!')
@@ -48,7 +48,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->content('A simple danger alert—check it out!')
@@ -74,7 +74,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->content('A simple dark alert—check it out!')
@@ -91,7 +91,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->content('A simple dark alert—check it out!')
@@ -117,7 +117,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->content('A simple info alert—check it out!')
@@ -136,7 +136,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->content('A simple info alert—check it out!')
@@ -162,7 +162,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->content('A simple light alert—check it out!')
@@ -179,7 +179,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->content('A simple light alert—check it out!')
@@ -205,7 +205,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->content('A simple primary alert—check it out!')
@@ -224,7 +224,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->content('A simple primary alert—check it out!')
@@ -250,7 +250,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->content('A simple secondary alert—check it out!')
@@ -269,7 +269,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->content('A simple secondary alert—check it out!')
@@ -295,7 +295,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->content('A simple success alert—check it out!')
@@ -314,7 +314,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->content('A simple success alert—check it out!')
@@ -340,7 +340,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return Alert::tag()
                         ->content('A simple warning alert—check it out!')
@@ -359,7 +359,7 @@ final class AlertDefaultProvider
                     </div>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return Alert::tag()
                         ->content('A simple warning alert—check it out!')

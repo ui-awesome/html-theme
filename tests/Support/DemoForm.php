@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Support;
+namespace UIAwesome\Html\Theme\Tests\Support;
 
 use UIAwesome\FormModel\BaseFormModel;
 

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Provider;
+namespace UIAwesome\Html\Theme\Tests\Provider;
 
 use Closure;
 use UIAwesome\Html\Core\Component\{Dropdown, Item, Menu, NavBar, Toggle};
 use UIAwesome\Html\Core\Config\{ComponentContext, Config};
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\NavBar\AlignRightTest;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\NavBar\AlignRightTest;
 
 /**
  * Provides fixed expected markup and deferred builders for {@see AlignRightTest}.
@@ -77,7 +77,7 @@ final class NavBarAlignRightProvider
                     </nav>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap5Theme());
+                    $config = new Config(new Bootstrap5());
 
                     return NavBar::tag()
                         ->brandLink('#')
@@ -175,7 +175,7 @@ final class NavBarAlignRightProvider
                     </nav>
                     HTML,
                 static function (): string {
-                    $config = new Config(new Bootstrap6Theme());
+                    $config = new Config(new Bootstrap6());
 
                     return NavBar::tag()
                         ->brandLink('#')

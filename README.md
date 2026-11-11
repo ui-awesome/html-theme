@@ -1,25 +1,25 @@
 <!-- markdownlint-disable MD041 -->
 <p align="center">
-    <a href="https://github.com/ui-awesome/html-theme-bootstrap" target="_blank">
+    <a href="https://github.com/ui-awesome/html-theme" target="_blank">
         <img src="https://raw.githubusercontent.com/ui-awesome/.github/refs/heads/main/logo/ui_awesome.png" alt="UI Awesome" width="25%">
     </a>
-    <h1 align="center">Html Theme Bootstrap</h1>
+    <h1 align="center">Html Theme</h1>
     <br>
 </p>
 <!-- markdownlint-enable MD041 -->
 
 <p align="center">
-    <a href="https://github.com/ui-awesome/html-theme-bootstrap/actions/workflows/build.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/ui-awesome/html-theme-bootstrap/build.yml?style=for-the-badge&label=Testo&logo=github" alt="Testo">
+    <a href="https://github.com/ui-awesome/html-theme/actions/workflows/build.yml" target="_blank">
+        <img src="https://img.shields.io/github/actions/workflow/status/ui-awesome/html-theme/build.yml?style=for-the-badge&label=Testo&logo=github" alt="Testo">
     </a>
-    <a href="https://dashboard.stryker-mutator.io/reports/github.com/ui-awesome/html-theme-bootstrap/main" target="_blank">
-        <img src="https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fui-awesome%2Fhtml-theme-bootstrap%2Fmain" alt="Mutation Testing">
+    <a href="https://dashboard.stryker-mutator.io/reports/github.com/ui-awesome/html-theme/main" target="_blank">
+        <img src="https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fui-awesome%2Fhtml-theme%2Fmain" alt="Mutation Testing">
     </a>
-    <a href="https://github.com/ui-awesome/html-theme-bootstrap/actions/workflows/static.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/ui-awesome/html-theme-bootstrap/static.yml?style=for-the-badge&label=PHPStan&logo=github" alt="PHPStan">
+    <a href="https://github.com/ui-awesome/html-theme/actions/workflows/static.yml" target="_blank">
+        <img src="https://img.shields.io/github/actions/workflow/status/ui-awesome/html-theme/static.yml?style=for-the-badge&label=PHPStan&logo=github" alt="PHPStan">
     </a>
-    <a href="https://github.com/ui-awesome/html-theme-bootstrap/actions/workflows/security.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/ui-awesome/html-theme-bootstrap/security.yml?style=for-the-badge&label=Security&logo=github" alt="Security">
+    <a href="https://github.com/ui-awesome/html-theme/actions/workflows/security.yml" target="_blank">
+        <img src="https://img.shields.io/github/actions/workflow/status/ui-awesome/html-theme/security.yml?style=for-the-badge&label=Security&logo=github" alt="Security">
     </a>
 </p>
 
@@ -38,7 +38,7 @@
 ### Installation
 
 ```bash
-composer require ui-awesome/html-theme-bootstrap:^0.1
+composer require ui-awesome/html-theme:^0.1
 ```
 
 ### Quick start
@@ -51,9 +51,9 @@ application-scoped `Config`, and describe each component with a `ComponentContex
 ```php
 use UIAwesome\Html\Core\Component\Alert;
 use UIAwesome\Html\Core\Config\{ComponentContext, Config};
-use UIAwesome\Html\Theme\Bootstrap\Bootstrap5Theme;
+use UIAwesome\Html\Theme\Bootstrap5;
 
-$config = new Config(theme: new Bootstrap5Theme());
+$config = new Config(theme: new Bootstrap5());
 
 echo Alert::tag()
     ->config($config, new ComponentContext('alert', variant: 'success'))
@@ -92,7 +92,7 @@ Your session expired.
 
 #### Bootstrap 6 alpha
 
-`Bootstrap6Theme` targets Bootstrap **6.0.0-alpha.1**. Support is experimental and tied to that alpha, not to a stable
+`Bootstrap6` targets Bootstrap **6.0.0-alpha.1**. Support is experimental and tied to that alpha, not to a stable
 Bootstrap 6 release.
 
 The `navbar` context renders a Bootstrap 6 navigation bar. The menu marks the item that matches the current path as
@@ -100,9 +100,9 @@ active and styles disabled items.
 
 ```php
 use UIAwesome\Html\Core\Component\{Item, Menu, NavBar};
-use UIAwesome\Html\Theme\Bootstrap\Bootstrap6Theme;
+use UIAwesome\Html\Theme\Bootstrap6;
 
-$config = new Config(theme: new Bootstrap6Theme());
+$config = new Config(theme: new Bootstrap6());
 
 echo NavBar::tag()
     ->config($config, new ComponentContext('navbar'))
@@ -156,6 +156,85 @@ Enterprise
 </div>
 </div>
 </nav>
+```
+
+#### Navbar dropdown
+
+A `Dropdown` nested in the navbar menu receives the theme's dropdown toggle. `toggleLabel()` replaces only the toggle
+text and keeps its classes and data attributes.
+
+```php
+use UIAwesome\Html\Core\Component\Dropdown;
+
+echo NavBar::tag()
+    ->config($config, new ComponentContext('navbar'))
+    ->brandLink('/')
+    ->brandText('UI Awesome')
+    ->menu(
+        Menu::tag()
+            ->id('main-menu')
+            ->items(
+                Item::tag()->label('Home')->link('/'),
+                Dropdown::tag()
+                    ->containerTag(false)
+                    ->id(null)
+                    ->toggleLabel('Docs')
+                    ->items(
+                        Item::tag()->label('Guides')->link('/docs/guides'),
+                        Item::tag()->label('API reference')->link('/docs/api'),
+                    ),
+            ),
+    )
+    ->render();
+```
+
+Output:
+
+```text
+<nav class="navbar navbar-expand bg-1">
+<div class="container-fluid">
+<a class="navbar-brand" href="/">
+UI Awesome
+</a>
+<div class="flex-grow-1" id="main-menu">
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="/">
+Home
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link menu-toggle" role="button" aria-expanded="false" data-bs-toggle="menu">
+Docs
+</a>
+<ul class="menu">
+<li>
+<a class="menu-item" href="/docs/guides">
+Guides
+</a>
+</li>
+<li>
+<a class="menu-item" href="/docs/api">
+API reference
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+```
+
+To build the toggle yourself, the `menu-dropdown` toggle recipe applies the same styling without content, and the
+dropdown keeps a toggle set through `toggle()`:
+
+```php
+use UIAwesome\Html\Core\Component\Toggle;
+
+$toggle = Toggle::tag()
+    ->config($config, new ComponentContext('toggle', variant: 'menu-dropdown'))
+    ->content('Docs');
 ```
 
 #### Form fields
@@ -247,14 +326,14 @@ For detailed configuration options and advanced usage.
 ## Package information
 
 [![PHP](https://img.shields.io/badge/%3E%3D8.3-777BB4.svg?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/releases/8.3/en.php)
-[![Latest Stable Version](https://img.shields.io/packagist/v/ui-awesome/html-theme-bootstrap.svg?style=for-the-badge&logo=packagist&logoColor=white&label=Stable)](https://packagist.org/packages/ui-awesome/html-theme-bootstrap)
-[![Total Downloads](https://img.shields.io/packagist/dt/ui-awesome/html-theme-bootstrap.svg?style=for-the-badge&logo=composer&logoColor=white&label=Downloads)](https://packagist.org/packages/ui-awesome/html-theme-bootstrap)
+[![Latest Stable Version](https://img.shields.io/packagist/v/ui-awesome/html-theme.svg?style=for-the-badge&logo=packagist&logoColor=white&label=Stable)](https://packagist.org/packages/ui-awesome/html-theme)
+[![Total Downloads](https://img.shields.io/packagist/dt/ui-awesome/html-theme.svg?style=for-the-badge&logo=composer&logoColor=white&label=Downloads)](https://packagist.org/packages/ui-awesome/html-theme)
 
 ## Project status
 
-[![Codecov](https://img.shields.io/codecov/c/github/ui-awesome/html-theme-bootstrap.svg?style=for-the-badge&logo=codecov&logoColor=white&label=Coverage)](https://codecov.io/github/ui-awesome/html-theme-bootstrap)
-[![PHPStan Level Max](https://img.shields.io/badge/PHPStan-Level%20Max-4F5D95.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ui-awesome/html-theme-bootstrap/actions/workflows/static.yml)
-[![Quality](https://img.shields.io/github/actions/workflow/status/ui-awesome/html-theme-bootstrap/quality.yml?style=for-the-badge&label=Quality&logo=github)](https://github.com/ui-awesome/html-theme-bootstrap/actions/workflows/quality.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/ui-awesome/html-theme.svg?style=for-the-badge&logo=codecov&logoColor=white&label=Coverage)](https://codecov.io/github/ui-awesome/html-theme)
+[![PHPStan Level Max](https://img.shields.io/badge/PHPStan-Level%20Max-4F5D95.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ui-awesome/html-theme/actions/workflows/static.yml)
+[![Quality](https://img.shields.io/github/actions/workflow/status/ui-awesome/html-theme/quality.yml?style=for-the-badge&label=Quality&logo=github)](https://github.com/ui-awesome/html-theme/actions/workflows/quality.yml)
 [![StyleCI](https://img.shields.io/badge/StyleCI-Passed-44CC11.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.styleci.io/repos/777837641?branch=main)
 
 ## Our social networks

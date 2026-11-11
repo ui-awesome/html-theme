@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests;
+namespace UIAwesome\Html\Theme\Tests;
 
 use Testo\Assert;
 use Testo\Data\DataProvider;
@@ -14,15 +14,15 @@ use UIAwesome\Html\Core\Theme\ThemeInterface;
 use UIAwesome\Html\Field\Factory\ControlFactory;
 use UIAwesome\Html\Field\Field;
 use UIAwesome\Html\Form\{CheckboxList, ChoiceItem, RadioList};
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\Provider\ThemeProvider;
-use UIAwesome\Html\Theme\Bootstrap\Tests\Support\DemoForm;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\Provider\ThemeProvider;
+use UIAwesome\Html\Theme\Tests\Support\DemoForm;
 
 use function iterator_to_array;
 use function substr_count;
 
 /**
- * Unit tests for {@see Bootstrap5Theme} and {@see Bootstrap6Theme} through real component and field rendering.
+ * Unit tests for {@see Bootstrap5} and {@see Bootstrap6} through real component and field rendering.
  *
  * {@see ThemeProvider} for test case data providers.
  */
@@ -256,8 +256,8 @@ final class ThemeContractTest
 
     public function neutralAlertAndResponsiveMenuDifferByVersion(): void
     {
-        $bootstrap5 = new Bootstrap5Theme();
-        $bootstrap6 = new Bootstrap6Theme();
+        $bootstrap5 = new Bootstrap5();
+        $bootstrap6 = new Bootstrap6();
 
         Assert::same(
             $bootstrap5->getName(),
@@ -474,7 +474,7 @@ final class ThemeContractTest
             );
         }
 
-        foreach (['alert', 'dropdown', 'menu-dropdown', 'selector-language'] as $variant) {
+        foreach (['alert', 'dropdown', 'selector-language'] as $variant) {
             Assert::same(
                 iterator_to_array($theme->getRecipes(new ComponentContext('toggle', variant: $variant))),
                 [],

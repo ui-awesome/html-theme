@@ -149,7 +149,7 @@ composer tests -- --coverage-clover=runtime/coverage/clover.xml
 Run one test class or group.
 
 ```bash
-composer tests -- --filter=Bootstrap5ThemeTest
+composer tests -- --filter=Bootstrap5Test
 composer tests -- --group=theme
 ```
 
