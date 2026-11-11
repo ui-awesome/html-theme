@@ -204,7 +204,7 @@ Home
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link menu-toggle" role="button" aria-expanded="false" data-bs-toggle="menu">
+<a class="nav-link menu-toggle" href="#" role="button" aria-expanded="false" data-bs-toggle="menu">
 Docs
 </a>
 <ul class="menu">

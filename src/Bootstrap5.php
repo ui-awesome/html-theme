@@ -388,7 +388,8 @@ final class Bootstrap5 implements ThemeInterface
     /**
      * Returns the navbar link styling that opens a nested dropdown, without content.
      *
-     * The recipe carries no content because `content()` appends: the caller supplies the label.
+     * The link points to `#` so it stays keyboard-focusable; a caller `href` set after the recipe replaces it. The recipe
+     * carries no content because `content()` appends: the caller supplies the label.
      *
      * @return Recipe Navbar dropdown toggle recipe.
      *
@@ -398,6 +399,7 @@ final class Bootstrap5 implements ThemeInterface
     {
         return $this->recipe(
             'toggle.menu-dropdown',
+            new Call('addAttribute', 'href', '#'),
             new Call('ariaAttributes', ['expanded' => 'false']),
             new Call('class', 'nav-link dropdown-toggle'),
             new Call('dataAttributes', ['bs-toggle' => 'dropdown']),

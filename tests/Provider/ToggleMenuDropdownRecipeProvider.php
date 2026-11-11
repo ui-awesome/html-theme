@@ -21,9 +21,25 @@ final class ToggleMenuDropdownRecipeProvider
     public static function render(): array
     {
         return [
+            'Bootstrap 5 with caller href' => [
+                <<<HTML
+                    <a class="nav-link dropdown-toggle" href="/docs" role="button" aria-expanded="false" data-bs-toggle="dropdown">
+                    Docs
+                    </a>
+                    HTML,
+                static function (): string {
+                    $config = new Config(new Bootstrap5());
+
+                    return Toggle::tag()
+                        ->config($config, new ComponentContext('toggle', variant: 'menu-dropdown'))
+                        ->addAttribute('href', '/docs')
+                        ->content('Docs')
+                        ->render();
+                },
+            ],
             'Bootstrap 5 without content' => [
                 <<<HTML
-                    <a class="nav-link dropdown-toggle" role="button" aria-expanded="false" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false" data-bs-toggle="dropdown">
                     </a>
                     HTML,
                 static function (): string {
@@ -36,7 +52,7 @@ final class ToggleMenuDropdownRecipeProvider
             ],
             'Bootstrap 5 with content' => [
                 <<<HTML
-                    <a class="nav-link dropdown-toggle" role="button" aria-expanded="false" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false" data-bs-toggle="dropdown">
                     Docs
                     </a>
                     HTML,
@@ -49,9 +65,25 @@ final class ToggleMenuDropdownRecipeProvider
                         ->render();
                 },
             ],
+            'Bootstrap 6 with caller href' => [
+                <<<HTML
+                    <a class="nav-link menu-toggle" href="/docs" role="button" aria-expanded="false" data-bs-toggle="menu">
+                    Docs
+                    </a>
+                    HTML,
+                static function (): string {
+                    $config = new Config(new Bootstrap6());
+
+                    return Toggle::tag()
+                        ->config($config, new ComponentContext('toggle', variant: 'menu-dropdown'))
+                        ->addAttribute('href', '/docs')
+                        ->content('Docs')
+                        ->render();
+                },
+            ],
             'Bootstrap 6 without content' => [
                 <<<HTML
-                    <a class="nav-link menu-toggle" role="button" aria-expanded="false" data-bs-toggle="menu">
+                    <a class="nav-link menu-toggle" href="#" role="button" aria-expanded="false" data-bs-toggle="menu">
                     </a>
                     HTML,
                 static function (): string {
@@ -64,7 +96,7 @@ final class ToggleMenuDropdownRecipeProvider
             ],
             'Bootstrap 6 with content' => [
                 <<<HTML
-                    <a class="nav-link menu-toggle" role="button" aria-expanded="false" data-bs-toggle="menu">
+                    <a class="nav-link menu-toggle" href="#" role="button" aria-expanded="false" data-bs-toggle="menu">
                     Docs
                     </a>
                     HTML,

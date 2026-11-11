@@ -23,7 +23,7 @@ final class ToggleMenuDropdownProvider
         return [
             'Bootstrap 5' => [
                 <<<HTML
-                    <a class="nav-link dropdown-toggle" role="button" aria-expanded="false" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false" data-bs-toggle="dropdown">
                     Dropdown
                     </a>
                     HTML,
@@ -51,7 +51,7 @@ final class ToggleMenuDropdownProvider
             ],
             'Bootstrap 6' => [
                 <<<HTML
-                    <a class="nav-link menu-toggle" role="button" aria-expanded="false" data-bs-toggle="menu">
+                    <a class="nav-link menu-toggle" href="#" role="button" aria-expanded="false" data-bs-toggle="menu">
                     Dropdown
                     </a>
                     HTML,
