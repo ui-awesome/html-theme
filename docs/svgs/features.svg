@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" width="100%" role="img" aria-labelledby="features-title features-description">
+    <title id="features-title">Bootstrap theme features</title>
+    <desc id="features-description">Bootstrap 5 and Bootstrap 6 alpha themes provide semantic recipes, explicit configuration, form field styling, safe defaults, and markup-only rendering. Bootstrap 6 navigation is static; applications load browser assets separately.</desc>
+    <style>
+        text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        .card { fill: #e6f4ea; stroke: #a7cdb3; stroke-width: 1; }
+        .title { font-weight: 700; font-size: 18px; fill: #1a202c; }
+        .content { font-size: 15px; fill: #4a5568; }
+    </style>
+    <g>
+        <rect class="card" x="20" y="20" width="570" height="100" rx="6"/>
+        <rect x="20" y="20" width="4" height="100" fill="#1f883d"/>
+        <text class="title" x="40" y="52">Two Bootstrap Themes</text>
+        <text class="content" x="40" y="80">Bootstrap 5 and Bootstrap 6 alpha recipes</text>
+        <text class="content" x="40" y="102">Choose matching browser assets</text>
+    </g>
+    <g>
+        <rect class="card" x="610" y="20" width="570" height="100" rx="6"/>
+        <rect x="610" y="20" width="4" height="100" fill="#1f883d"/>
+        <text class="title" x="630" y="52">Semantic Recipes</text>
+        <text class="content" x="630" y="80">Describe components with contexts</text>
+        <text class="content" x="630" y="102">and variants, separate from presentation</text>
+    </g>
+    <g>
+        <rect class="card" x="20" y="140" width="570" height="100" rx="6"/>
+        <rect x="20" y="140" width="4" height="100" fill="#1f883d"/>
+        <text class="title" x="40" y="172">Explicit Configuration</text>
+        <text class="content" x="40" y="200">Pass Config explicitly to components</text>
+        <text class="content" x="40" y="222">No global theme or hidden initialization</text>
+    </g>
+    <g>
+        <rect class="card" x="610" y="140" width="570" height="100" rx="6"/>
+        <rect x="610" y="140" width="4" height="100" fill="#1f883d"/>
+        <text class="title" x="630" y="172">Form Field Styling</text>
+        <text class="content" x="630" y="200">Controls, labels, hints, and validation</text>
+        <text class="content" x="630" y="222">One theme for components and fields</text>
+    </g>
+    <g>
+        <rect class="card" x="20" y="260" width="570" height="100" rx="6"/>
+        <rect x="20" y="260" width="4" height="100" fill="#1f883d"/>
+        <text class="title" x="40" y="292">Safe Defaults</text>
+        <text class="content" x="40" y="320">Unknown contexts retain defaults</text>
+        <text class="content" x="40" y="342">Bootstrap 6 alpha navbars stay static</text>
+    </g>
+    <g>
+        <rect class="card" x="610" y="260" width="570" height="100" rx="6"/>
+        <rect x="610" y="260" width="4" height="100" fill="#1f883d"/>
+        <text class="title" x="630" y="292">Markup Only</text>
+        <text class="content" x="630" y="320">Renders Bootstrap classes and attributes</text>
+        <text class="content" x="630" y="342">Applications provide browser behavior</text>
+    </g>
+</svg>

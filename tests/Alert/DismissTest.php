@@ -2,156 +2,42 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Component\Bootstrap5\Tests\Alert;
+namespace UIAwesome\Html\Theme\Bootstrap\Tests\Alert;
 
-use PHPForge\Support\Assert;
-use UIAwesome\Html\Component\Bootstrap5\Alert;
+use Closure;
+use Testo\Assert;
+use Testo\Data\DataProvider;
+use Testo\Filter\Group;
+use Testo\Test;
+use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
+use UIAwesome\Html\Theme\Bootstrap\Tests\Provider\AlertDismissProvider;
 
 /**
- * Alert component with Bootstrap dismiss button.
+ * Unit tests for {@see Bootstrap5Theme} and {@see Bootstrap6Theme} dismissible alert rendering per contextual variant.
  *
- * Provide contextual feedback messages for typical user actions with the handful of available and flexible alert
- * messages.
- *
- * @link https://getbootstrap.com/docs/5.3/components/alerts/
- *
- * @psalm-suppress PropertyNotSetInConstructor
+ * {@see AlertDismissProvider} for test case data providers.
  */
-final class DismissTest extends \PHPUnit\Framework\TestCase
+#[Test]
+#[Group('theme')]
+final class DismissTest
 {
-    public function testDanger(): void
+    /**
+     * @param Closure(): string $render
+     */
+    #[DataProvider(AlertDismissProvider::class . '::danger')]
+    #[DataProvider(AlertDismissProvider::class . '::dark')]
+    #[DataProvider(AlertDismissProvider::class . '::info')]
+    #[DataProvider(AlertDismissProvider::class . '::light')]
+    #[DataProvider(AlertDismissProvider::class . '::primary')]
+    #[DataProvider(AlertDismissProvider::class . '::secondary')]
+    #[DataProvider(AlertDismissProvider::class . '::success')]
+    #[DataProvider(AlertDismissProvider::class . '::warning')]
+    public function render(string $variant, string $expected, Closure $render): void
     {
-        Assert::equalsWithoutLE(
-            <<<HTML
-            <div class="alert alert-danger alert-dismissible fade show" id="alert_658fec01ac6cf" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
-            </div>
-            HTML,
-            Alert::widget()
-                ->content('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
-                ->cookbook('dismissible', 'danger')
-                ->id('alert_658fec01ac6cf')
-                ->render()
-        );
-    }
-
-    public function testDark(): void
-    {
-        Assert::equalsWithoutLE(
-            <<<HTML
-            <div class="alert alert-dark alert-dismissible fade show" id="alert_658fec01ac6cf" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
-            </div>
-            HTML,
-            Alert::widget()
-                ->content('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
-                ->cookbook('dismissible', 'dark')
-                ->id('alert_658fec01ac6cf')
-                ->render()
-        );
-    }
-
-    public function testInfo(): void
-    {
-        Assert::equalsWithoutLE(
-            <<<HTML
-            <div class="alert alert-info alert-dismissible fade show" id="alert_658fec01ac6cf" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
-            </div>
-            HTML,
-            Alert::widget()
-                ->content('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
-                ->cookbook('dismissible', 'info')
-                ->id('alert_658fec01ac6cf')
-                ->render()
-        );
-    }
-
-    public function testLight(): void
-    {
-        Assert::equalsWithoutLE(
-            <<<HTML
-            <div class="alert alert-light alert-dismissible fade show" id="alert_658fec01ac6cf" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
-            </div>
-            HTML,
-            Alert::widget()
-                ->content('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
-                ->cookbook('dismissible', 'light')
-                ->id('alert_658fec01ac6cf')
-                ->render()
-        );
-    }
-
-    public function testPrimary(): void
-    {
-        Assert::equalsWithoutLE(
-            <<<HTML
-            <div class="alert alert-primary alert-dismissible fade show" id="alert_658fec01ac6cf" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
-            </div>
-            HTML,
-            Alert::widget()
-                ->content('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
-                ->cookbook('dismissible', 'primary')
-                ->id('alert_658fec01ac6cf')
-                ->render()
-        );
-    }
-
-    public function testSecondary(): void
-    {
-        Assert::equalsWithoutLE(
-            <<<HTML
-            <div class="alert alert-secondary alert-dismissible fade show" id="alert_658fec01ac6cf" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
-            </div>
-            HTML,
-            Alert::widget()
-                ->content('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
-                ->cookbook('dismissible', 'secondary')
-                ->id('alert_658fec01ac6cf')
-                ->render()
-        );
-    }
-
-    public function testSuccess(): void
-    {
-        Assert::equalsWithoutLE(
-            <<<HTML
-            <div class="alert alert-success alert-dismissible fade show" id="alert_658fec01ac6cf" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
-            </div>
-            HTML,
-            Alert::widget()
-                ->content('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
-                ->cookbook('dismissible', 'success')
-                ->id('alert_658fec01ac6cf')
-                ->render()
-        );
-    }
-
-    public function testWarning(): void
-    {
-        Assert::equalsWithoutLE(
-            <<<HTML
-            <div class="alert alert-warning alert-dismissible fade show" id="alert_658fec01ac6cf" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
-            </div>
-            HTML,
-            Alert::widget()
-                ->content('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
-                ->cookbook('dismissible', 'warning')
-                ->id('alert_658fec01ac6cf')
-                ->render()
+        Assert::same(
+            $render(),
+            $expected,
+            "Rendered {$variant} dismissible alert markup must match.",
         );
     }
 }

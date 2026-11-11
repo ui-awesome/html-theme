@@ -1,8 +1,10 @@
-# Change Log
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 0.1.0 Under development
 
-- Enh #1: Initial commit (@terabytesoftw)
-- Enh #2: Add cookbook `NavBar` bootstrap5 `AlignRight` class (@terabytesoftw)
-- Enh #3: Update last change `php-forge/awesome-widget` (@terabytesoftw)
-- Fix #4: Update dependencies `composer.json` (@terabytesoftw)
+- feat: initial development release.
