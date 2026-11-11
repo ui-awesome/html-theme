@@ -41,18 +41,6 @@
 composer require ui-awesome/html-theme-bootstrap:^0.1
 ```
 
-Requires PHP 8.3 or later. The `0.1` line is under development, and the runtime dependencies `ui-awesome/html`,
-`ui-awesome/html-core`, `ui-awesome/html-core-component`, `ui-awesome/html-field`, and `ui-awesome/html-svg` are
-required at development stability (`@dev`). Composer honours stability flags only from the root package, so the
-application's `composer.json` must allow development versions:
-
-```json
-{
-  "minimum-stability": "dev",
-  "prefer-stable": true
-}
-```
-
 ### Quick start
 
 A theme resolves configuration recipes for semantic component contexts. Pass it to components through an
