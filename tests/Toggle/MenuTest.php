@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Toggle;
+namespace UIAwesome\Html\Theme\Tests\Toggle;
 
 use Closure;
 use Testo\Assert;
 use Testo\Data\DataProvider;
 use Testo\Filter\Group;
 use Testo\Test;
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\Provider\ToggleMenuProvider;
-use UIAwesome\Html\Theme\Bootstrap\Tests\ThemeContractTest;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\Provider\ToggleMenuProvider;
+use UIAwesome\Html\Theme\Tests\ThemeContractTest;
 
 /**
- * Unit tests for {@see Bootstrap5Theme} responsive menu toggle rendering.
+ * Unit tests for {@see Bootstrap5} responsive menu toggle rendering.
  *
- * {@see Bootstrap6Theme} resolves no `toggle` recipe for the `menu` variant, which
+ * {@see Bootstrap6} resolves no `toggle` recipe for the `menu` variant, which
  * {@see ThemeContractTest::neutralAlertAndResponsiveMenuDifferByVersion()} asserts.
  *
  * {@see ToggleMenuProvider} for test case data providers.

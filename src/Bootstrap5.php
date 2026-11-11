@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap;
+namespace UIAwesome\Html\Theme;
 
 use UIAwesome\Html\Core\Component\Toggle;
-use UIAwesome\Html\Core\Config\{Call, ComponentContext, Cookbook, Recipe};
+use UIAwesome\Html\Core\Config\{Call, ComponentContext, Config, Cookbook, Recipe};
 use UIAwesome\Html\Core\Theme\ThemeInterface;
 use UIAwesome\Html\Interop\{Block, Inline};
 use UIAwesome\Html\Svg\Svg;
@@ -25,7 +25,7 @@ use function in_array;
  *
  * @see https://getbootstrap.com/docs/5.3/getting-started/introduction/
  */
-final class Bootstrap5Theme implements ThemeInterface
+final class Bootstrap5 implements ThemeInterface
 {
     /**
      * Contextual alert types shipped by Bootstrap 5.
@@ -57,7 +57,7 @@ final class Bootstrap5Theme implements ThemeInterface
      *
      * Usage example:
      * ```php
-     * $name = (new \UIAwesome\Html\Theme\Bootstrap\Bootstrap5Theme())->getName();
+     * $name = (new \UIAwesome\Html\Theme\Bootstrap5())->getName();
      * ```
      *
      * @return string Stable theme identifier.
@@ -369,7 +369,10 @@ final class Bootstrap5Theme implements ThemeInterface
     }
 
     /**
-     * Returns the navbar link that opens a nested dropdown.
+     * Returns the navbar link that opens a nested dropdown, labelled `Dropdown`.
+     *
+     * The link is built from {@see menuDropdownToggleRecipe()} through this theme, so the navbar default and the
+     * standalone `menu-dropdown` toggle share one styling source.
      *
      * @return Toggle Link wired to the Bootstrap dropdown plugin through `data-bs-toggle`.
      *
@@ -378,12 +381,31 @@ final class Bootstrap5Theme implements ThemeInterface
     private function menuDropdownToggle(): Toggle
     {
         return Toggle::tag()
-            ->ariaAttributes(['expanded' => 'false'])
-            ->class('nav-link dropdown-toggle')
-            ->content('Dropdown')
-            ->dataAttributes(['bs-toggle' => 'dropdown'])
-            ->link()
-            ->role('button');
+            ->config(new Config($this), new ComponentContext('toggle', variant: 'menu-dropdown'))
+            ->content('Dropdown');
+    }
+
+    /**
+     * Returns the navbar link styling that opens a nested dropdown, without content.
+     *
+     * The link points to `#` so it stays keyboard-focusable; a caller `href` set after the recipe replaces it. The recipe
+     * carries no content because `content()` appends: the caller supplies the label.
+     *
+     * @return Recipe Navbar dropdown toggle recipe.
+     *
+     * @see https://getbootstrap.com/docs/5.3/components/navbar/#nav
+     */
+    private function menuDropdownToggleRecipe(): Recipe
+    {
+        return $this->recipe(
+            'toggle.menu-dropdown',
+            new Call('addAttribute', 'href', '#'),
+            new Call('ariaAttributes', ['expanded' => 'false']),
+            new Call('class', 'nav-link dropdown-toggle'),
+            new Call('dataAttributes', ['bs-toggle' => 'dropdown']),
+            new Call('link'),
+            new Call('role', 'button'),
+        );
     }
 
     /**
@@ -534,9 +556,9 @@ final class Bootstrap5Theme implements ThemeInterface
     /**
      * Returns the standalone toggle recipe for the requested variant.
      *
-     * Only the toggles no component recipe already embeds are resolved here: `menu` and `selector-theme`. The alert,
-     * dropdown, language-selector, and navbar-dropdown toggles ship fully configured inside their owning component
-     * recipe, so requesting them here yields no recipe.
+     * Resolves `menu`, `menu-dropdown`, and `selector-theme`. The `menu-dropdown` toggle carries the navbar dropdown
+     * styling without content, so the caller supplies the label. The alert, dropdown, and language-selector toggles
+     * ship fully configured inside their owning component recipe, so requesting them here yields no recipe.
      *
      * @param ComponentContext $context Semantic component context.
      *
@@ -546,6 +568,7 @@ final class Bootstrap5Theme implements ThemeInterface
     {
         return match ($context->variant) {
             'menu' => $this->menuToggle(),
+            'menu-dropdown' => $this->menuDropdownToggleRecipe(),
             'selector-theme' => $this->themeSelectorToggle(),
             default => null,
         };

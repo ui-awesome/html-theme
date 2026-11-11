@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Breadcrumb;
+namespace UIAwesome\Html\Theme\Tests\Breadcrumb;
 
 use Closure;
 use Testo\Assert;
 use Testo\Data\DataProvider;
 use Testo\Filter\Group;
 use Testo\Test;
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\Provider\BreadcrumbDefaultProvider;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\Provider\BreadcrumbDefaultProvider;
 
 /**
- * Unit tests for {@see Bootstrap5Theme} and {@see Bootstrap6Theme} default breadcrumb rendering.
+ * Unit tests for {@see Bootstrap5} and {@see Bootstrap6} default breadcrumb rendering.
  *
  * {@see BreadcrumbDefaultProvider} for test case data providers.
  */

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests;
+namespace UIAwesome\Html\Theme\Tests;
 
 use RuntimeException;
 use Testo\Assert;
@@ -14,27 +14,27 @@ use UIAwesome\Html\Field\Factory\ControlFactory;
 use UIAwesome\Html\Field\Field;
 use UIAwesome\Html\Form\{CheckboxList, ChoiceItem, InputCheckbox, InputRadio, RadioList};
 use UIAwesome\Html\Interop\Inline;
-use UIAwesome\Html\Theme\Bootstrap\Bootstrap5Theme;
-use UIAwesome\Html\Theme\Bootstrap\Tests\Provider\Bootstrap5ThemeProvider;
-use UIAwesome\Html\Theme\Bootstrap\Tests\Support\DemoForm;
+use UIAwesome\Html\Theme\Bootstrap5;
+use UIAwesome\Html\Theme\Tests\Provider\Bootstrap5Provider;
+use UIAwesome\Html\Theme\Tests\Support\DemoForm;
 
 use function array_map;
 use function iterator_to_array;
 use function str_ends_with;
 
 /**
- * Unit tests for {@see Bootstrap5Theme} recipe resolution and server feedback rendering.
+ * Unit tests for {@see Bootstrap5} recipe resolution and server feedback rendering.
  *
- * {@see Bootstrap5ThemeProvider} for test case data providers.
+ * {@see Bootstrap5Provider} for test case data providers.
  */
 #[Test]
 #[Group('theme')]
-final class Bootstrap5ThemeTest
+final class Bootstrap5Test
 {
     /**
      * @param list<array{string, list<mixed>}> $expectedCalls
      */
-    #[DataProvider(Bootstrap5ThemeProvider::class . '::choiceRecipes')]
+    #[DataProvider(Bootstrap5Provider::class . '::choiceRecipes')]
     public function resolvesChoiceRecipes(
         ComponentContext $context,
         string $expectedName,
@@ -64,7 +64,7 @@ final class Bootstrap5ThemeTest
         $model->addError('email', 'Review this choice.');
 
         $html = Field::tag()
-            ->config(new Config(new Bootstrap5Theme()))
+            ->config(new Config(new Bootstrap5()))
             ->control('checkbox')
             ->errorAttributes(['data-feedback' => 'custom'])
             ->errorClass('application-feedback', true)
@@ -92,7 +92,7 @@ final class Bootstrap5ThemeTest
         );
     }
 
-    #[DataProvider(Bootstrap5ThemeProvider::class . '::feedback')]
+    #[DataProvider(Bootstrap5Provider::class . '::feedback')]
     public function serverFeedbackPreservesBoundControl(string $type, bool $invalid): void
     {
         $model = new DemoForm();
@@ -102,7 +102,7 @@ final class Bootstrap5ThemeTest
         }
 
         $config = new Config(
-            new Bootstrap5Theme(),
+            new Bootstrap5(),
             factory: new ControlFactory(
                 [
                     'checkbox' => static fn(): InputCheckbox => InputCheckbox::tag()->value('not-an-email'),
@@ -170,7 +170,7 @@ final class Bootstrap5ThemeTest
 
     private static function resolveOne(ComponentContext $context): Recipe
     {
-        $recipes = iterator_to_array((new Bootstrap5Theme())->getRecipes($context));
+        $recipes = iterator_to_array((new Bootstrap5())->getRecipes($context));
 
         Assert::count(
             $recipes,

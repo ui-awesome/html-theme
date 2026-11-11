@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Toggle;
+namespace UIAwesome\Html\Theme\Tests\Toggle;
 
 use Closure;
 use Testo\Assert;
 use Testo\Data\DataProvider;
 use Testo\Filter\Group;
 use Testo\Test;
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\Provider\ToggleSelectorLanguageProvider;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\Provider\ToggleSelectorLanguageProvider;
 
 /**
- * Unit tests for {@see Bootstrap5Theme} and {@see Bootstrap6Theme} language selector toggle rendering.
+ * Unit tests for {@see Bootstrap5} and {@see Bootstrap6} language selector toggle rendering.
  *
  * {@see ToggleSelectorLanguageProvider} for test case data providers.
  */

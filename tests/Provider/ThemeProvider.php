@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace UIAwesome\Html\Theme\Bootstrap\Tests\Provider;
+namespace UIAwesome\Html\Theme\Tests\Provider;
 
 use UIAwesome\Html\Core\Theme\ThemeInterface;
 use UIAwesome\Html\Form\{CheckboxList, RadioList};
-use UIAwesome\Html\Theme\Bootstrap\{Bootstrap5Theme, Bootstrap6Theme};
-use UIAwesome\Html\Theme\Bootstrap\Tests\ThemeContractTest;
+use UIAwesome\Html\Theme\{Bootstrap5, Bootstrap6};
+use UIAwesome\Html\Theme\Tests\ThemeContractTest;
 
 use function sprintf;
 
@@ -47,12 +47,12 @@ final class ThemeProvider
     {
         $themes = [
             'bootstrap5' => [
-                new Bootstrap5Theme(),
+                new Bootstrap5(),
                 'alert alert-%s',
                 [],
             ],
             'bootstrap6' => [
-                new Bootstrap6Theme(),
+                new Bootstrap6(),
                 'alert theme-%s',
                 [
                     'alert-dismissible' => 'Bootstrap 5 dismissible class must not leak.',
@@ -119,12 +119,12 @@ final class ThemeProvider
     public static function breadcrumbs(): iterable
     {
         yield 'Bootstrap 5' => [
-            new Bootstrap5Theme(),
+            new Bootstrap5(),
             ['class="breadcrumb-item active"' => 'Active item class must be applied.'],
             [],
         ];
         yield 'Bootstrap 6 alpha' => [
-            new Bootstrap6Theme(),
+            new Bootstrap6(),
             [
                 'class="breadcrumb-link active"' => 'Active link class must be applied.',
                 '<span class="breadcrumb-link active"' => 'Current item must render as a `span`.',
@@ -143,8 +143,8 @@ final class ThemeProvider
      */
     public static function choiceLists(): iterable
     {
-        $bootstrap5 = new Bootstrap5Theme();
-        $bootstrap6 = new Bootstrap6Theme();
+        $bootstrap5 = new Bootstrap5();
+        $bootstrap6 = new Bootstrap6();
 
         yield 'Bootstrap 5 checkbox-list' => [
             $bootstrap5,
@@ -179,11 +179,11 @@ final class ThemeProvider
     {
         $themes = [
             'bootstrap5' => [
-                new Bootstrap5Theme(),
+                new Bootstrap5(),
                 ['select' => 'form-select', 'checkbox' => 'form-check-input', 'radio' => 'form-check-input'],
             ],
             'bootstrap6' => [
-                new Bootstrap6Theme(),
+                new Bootstrap6(),
                 ['select' => 'form-control', 'checkbox' => 'check', 'radio' => 'radio'],
             ],
         ];
@@ -211,8 +211,8 @@ final class ThemeProvider
      */
     public static function dropdowns(): iterable
     {
-        $bootstrap5 = new Bootstrap5Theme();
-        $bootstrap6 = new Bootstrap6Theme();
+        $bootstrap5 = new Bootstrap5();
+        $bootstrap6 = new Bootstrap6();
 
         $bootstrap6Contains = [
             'data-bs-toggle="menu"' => 'Toggle must target the JS plugin.',
@@ -257,7 +257,7 @@ final class ThemeProvider
     {
         $themes = [
             'Bootstrap 5' => [
-                new Bootstrap5Theme(),
+                new Bootstrap5(),
                 [
                     'navbar-expand-lg' => 'Expand breakpoint class must be applied.',
                     'data-bs-toggle="dropdown"' => 'Nested toggle must target the dropdown plugin.',
@@ -265,7 +265,7 @@ final class ThemeProvider
                 [],
             ],
             'Bootstrap 6 alpha' => [
-                new Bootstrap6Theme(),
+                new Bootstrap6(),
                 [
                     'navbar navbar-expand' => 'Expand class must be applied.',
                     'data-bs-toggle="menu"' => 'Nested toggle must target the menu plugin.',
@@ -289,7 +289,7 @@ final class ThemeProvider
      */
     public static function themes(): iterable
     {
-        yield 'Bootstrap 5' => [new Bootstrap5Theme()];
-        yield 'Bootstrap 6 alpha' => [new Bootstrap6Theme()];
+        yield 'Bootstrap 5' => [new Bootstrap5()];
+        yield 'Bootstrap 6 alpha' => [new Bootstrap6()];
     }
 }
