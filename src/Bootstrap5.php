@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace UIAwesome\Html\Theme;
 
 use UIAwesome\Html\Core\Component\Toggle;
+use UIAwesome\Html\Core\Component\Values\{ComponentName, ComponentState, DropdownVariant, NavBarVariant, ToggleVariant};
 use UIAwesome\Html\Core\Config\{Call, ComponentContext, Config, Cookbook, Recipe};
 use UIAwesome\Html\Core\Theme\ThemeInterface;
+use UIAwesome\Html\Field\Values\FieldComponentName;
 use UIAwesome\Html\Interop\{Block, Inline};
 use UIAwesome\Html\Svg\Svg;
 
@@ -17,7 +19,9 @@ use function in_array;
  *
  * Dispatch is explicit: {@see getRecipes()} matches `$context->component`, then narrows on `$context->variant` and
  * `$context->states` where the framework offers more than one presentation. A context the theme does not recognize
- * yields no recipe, so the host component keeps its own defaults.
+ * yields no recipe, so the host component keeps its own defaults. Recognized names are the backing values of
+ * {@see ComponentName}, {@see FieldComponentName}, and the upstream variant and state enums, so a context built from an
+ * enum case or from its string value resolves the same recipe.
  *
  * Every alert requires a contextual variant, and the navbar collapses below the large breakpoint behind the `toggle`
  * recipe with the `menu` variant. Interactive alerts, dropdowns, and collapses require Bootstrap's JavaScript; the
@@ -77,28 +81,36 @@ final class Bootstrap5 implements ThemeInterface
     public function getRecipes(ComponentContext $context): iterable
     {
         $recipe = match ($context->component) {
-            'alert' => $this->alert($context),
-            'breadcrumb' => $this->breadcrumb(),
-            'dropdown' => $this->dropdown($context),
-            'navbar' => $this->navBar($context),
-            'toggle' => $this->toggle($context),
-            'field' => $this->field(),
-            'field.label' => $this->fieldLabel(),
-            'field.control.email',
-            'field.control.password',
-            'field.control.text',
-            'field.control.textarea' => $this->fieldControl($context->component, 'form-control'),
-            'field.control.select' => $this->fieldControl($context->component, 'form-select'),
-            'field.control.checkbox',
-            'field.control.radio' => $this->fieldControl($context->component, 'form-check-input'),
-            'field.control.checkbox-list',
-            'field.control.radio-list' => $this->fieldChoiceList($context->component),
-            'field.input-container.checkbox',
-            'field.input-container.radio' => $this->fieldChoiceInputContainer($context->component),
-            'field.label.checkbox',
-            'field.label.radio' => $this->fieldChoiceLabel($context->component),
-            'field.hint' => $this->fieldHint(),
-            'field.error' => $this->fieldError(),
+            ComponentName::ALERT->value => $this->alert($context),
+            ComponentName::BREADCRUMB->value => $this->breadcrumb(),
+            ComponentName::DROPDOWN->value => $this->dropdown($context),
+            ComponentName::NAVBAR->value => $this->navBar($context),
+            ComponentName::TOGGLE->value => $this->toggle($context),
+            FieldComponentName::FIELD->value => $this->field(),
+            FieldComponentName::FIELD_LABEL->value => $this->fieldLabel(),
+            FieldComponentName::FIELD_CONTROL_EMAIL->value,
+            FieldComponentName::FIELD_CONTROL_PASSWORD->value,
+            FieldComponentName::FIELD_CONTROL_TEXT->value,
+            FieldComponentName::FIELD_CONTROL_TEXTAREA->value => $this->fieldControl(
+                $context->component,
+                'form-control',
+            ),
+            FieldComponentName::FIELD_CONTROL_SELECT->value => $this->fieldControl($context->component, 'form-select'),
+            FieldComponentName::FIELD_CONTROL_CHECKBOX->value,
+            FieldComponentName::FIELD_CONTROL_RADIO->value => $this->fieldControl(
+                $context->component,
+                'form-check-input',
+            ),
+            FieldComponentName::FIELD_CONTROL_CHECKBOX_LIST->value,
+            FieldComponentName::FIELD_CONTROL_RADIO_LIST->value => $this->fieldChoiceList($context->component),
+            FieldComponentName::FIELD_INPUT_CONTAINER_CHECKBOX->value,
+            FieldComponentName::FIELD_INPUT_CONTAINER_RADIO->value => $this->fieldChoiceInputContainer(
+                $context->component,
+            ),
+            FieldComponentName::FIELD_LABEL_CHECKBOX->value,
+            FieldComponentName::FIELD_LABEL_RADIO->value => $this->fieldChoiceLabel($context->component),
+            FieldComponentName::FIELD_HINT->value => $this->fieldHint(),
+            FieldComponentName::FIELD_ERROR->value => $this->fieldError(),
             default => null,
         };
 
@@ -129,7 +141,7 @@ final class Bootstrap5 implements ThemeInterface
         $class = "alert alert-{$variant}";
         $suffix = "alert.{$variant}";
 
-        if ($context->hasState('dismissible') === false) {
+        if ($context->hasState(ComponentState::DISMISSIBLE) === false) {
             return $this->recipe($suffix, new Call('class', $class));
         }
 
@@ -198,7 +210,7 @@ final class Bootstrap5 implements ThemeInterface
             );
         }
 
-        if ($context->variant === 'language') {
+        if ($context->variant === DropdownVariant::LANGUAGE->value) {
             return $this->recipe(
                 'dropdown.language',
                 new Call('containerClass', 'btn-group dropup ms-3'),
@@ -381,7 +393,10 @@ final class Bootstrap5 implements ThemeInterface
     private function menuDropdownToggle(): Toggle
     {
         return Toggle::tag()
-            ->config(new Config($this), new ComponentContext('toggle', variant: 'menu-dropdown'))
+            ->config(
+                new Config($this),
+                new ComponentContext(ComponentName::TOGGLE, variant: ToggleVariant::MENU_DROPDOWN),
+            )
             ->content('Dropdown');
     }
 
@@ -456,7 +471,7 @@ final class Bootstrap5 implements ThemeInterface
             );
         }
 
-        if ($context->variant === 'align-right') {
+        if ($context->variant === NavBarVariant::ALIGN_RIGHT->value) {
             return $this->recipe(
                 'navbar.align-right',
                 new Call('brandLinkClass', 'navbar-brand'),
@@ -567,9 +582,9 @@ final class Bootstrap5 implements ThemeInterface
     private function toggle(ComponentContext $context): Recipe|null
     {
         return match ($context->variant) {
-            'menu' => $this->menuToggle(),
-            'menu-dropdown' => $this->menuDropdownToggleRecipe(),
-            'selector-theme' => $this->themeSelectorToggle(),
+            ToggleVariant::MENU->value => $this->menuToggle(),
+            ToggleVariant::MENU_DROPDOWN->value => $this->menuDropdownToggleRecipe(),
+            ToggleVariant::SELECTOR_THEME->value => $this->themeSelectorToggle(),
             default => null,
         };
     }

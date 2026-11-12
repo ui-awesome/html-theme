@@ -40,7 +40,7 @@
         "phpstan/phpstan-strict-rules": "^2.0",
         "testo/bridge-infection": "^0.1.9",
         "testo/testo": "^0.10.56",
-        "ui-awesome/form-model": "^0.2@dev"
+        "ui-awesome/form-model": "^0.3@dev"
     },
     "autoload": {
         "psr-4": {

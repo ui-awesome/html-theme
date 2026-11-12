@@ -44,50 +44,38 @@ composer require ui-awesome/html-theme:^0.1
 ### Quick start
 
 A theme resolves configuration recipes for semantic component contexts. Pass it to components through an
-application-scoped `Config`, and describe each component with a `ComponentContext`.
+application-scoped `Config`, and describe each component with a `ComponentContext`. The examples name components,
+variants, and states with the `UIAwesome\Html\Core\Component\Values` enums; plain strings such as `'alert'` or
+`'dismissible'` remain accepted.
 
 #### Bootstrap 5
 
 ```php
 use UIAwesome\Html\Core\Component\Alert;
+use UIAwesome\Html\Core\Component\Values\{ComponentName, ComponentState};
 use UIAwesome\Html\Core\Config\{ComponentContext, Config};
 use UIAwesome\Html\Theme\Bootstrap5;
 
 $config = new Config(theme: new Bootstrap5());
 
 echo Alert::tag()
-    ->config($config, new ComponentContext('alert', variant: 'success'))
+    ->config($config, new ComponentContext(ComponentName::ALERT, variant: 'success'))
     ->content('Your changes have been saved.')
     ->id('alert-saved')
     ->render();
-```
-
-Output:
-
-```text
-<div class="alert alert-success" id="alert-saved" role="alert">
-Your changes have been saved.
-</div>
 ```
 
 States refine a variant. The `dismissible` state adds the Bootstrap close button:
 
 ```php
 echo Alert::tag()
-    ->config($config, new ComponentContext('alert', variant: 'danger', states: ['dismissible']))
+    ->config(
+        $config,
+        new ComponentContext(ComponentName::ALERT, variant: 'danger', states: [ComponentState::DISMISSIBLE]),
+    )
     ->content('Your session expired.')
     ->id('alert-session')
     ->render();
-```
-
-Output:
-
-```text
-<div class="alert alert-danger alert-dismissible fade show" id="alert-session" role="alert">
-Your session expired.
-<button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert">
-</button>
-</div>
 ```
 
 #### Bootstrap 6 alpha
@@ -105,7 +93,7 @@ use UIAwesome\Html\Theme\Bootstrap6;
 $config = new Config(theme: new Bootstrap6());
 
 echo NavBar::tag()
-    ->config($config, new ComponentContext('navbar'))
+    ->config($config, new ComponentContext(ComponentName::NAVBAR))
     ->brandLink('/')
     ->brandText('UI Awesome')
     ->menu(
@@ -122,42 +110,6 @@ echo NavBar::tag()
     ->render();
 ```
 
-Output:
-
-```text
-<nav class="navbar navbar-expand bg-1">
-<div class="container-fluid">
-<a class="navbar-brand" href="/">
-UI Awesome
-</a>
-<div class="flex-grow-1" id="main-menu">
-<ul class="nav navbar-nav">
-<li class="nav-item">
-<a class="nav-link" href="/">
-Home
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link active" href="/docs" aria-current="page">
-Docs
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="/pricing">
-Pricing
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link disabled" href="/enterprise">
-Enterprise
-</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-```
-
 #### Navbar dropdown
 
 A `Dropdown` nested in the navbar menu receives the theme's dropdown toggle. `toggleLabel()` replaces only the toggle
@@ -167,7 +119,7 @@ text and keeps its classes and data attributes.
 use UIAwesome\Html\Core\Component\Dropdown;
 
 echo NavBar::tag()
-    ->config($config, new ComponentContext('navbar'))
+    ->config($config, new ComponentContext(ComponentName::NAVBAR))
     ->brandLink('/')
     ->brandText('UI Awesome')
     ->menu(
@@ -188,52 +140,15 @@ echo NavBar::tag()
     ->render();
 ```
 
-Output:
-
-```text
-<nav class="navbar navbar-expand bg-1">
-<div class="container-fluid">
-<a class="navbar-brand" href="/">
-UI Awesome
-</a>
-<div class="flex-grow-1" id="main-menu">
-<ul class="nav navbar-nav">
-<li class="nav-item">
-<a class="nav-link" href="/">
-Home
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link menu-toggle" href="#" role="button" aria-expanded="false" data-bs-toggle="menu">
-Docs
-</a>
-<ul class="menu">
-<li>
-<a class="menu-item" href="/docs/guides">
-Guides
-</a>
-</li>
-<li>
-<a class="menu-item" href="/docs/api">
-API reference
-</a>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-```
-
 To build the toggle yourself, the `menu-dropdown` toggle recipe applies the same styling without content, and the
 dropdown keeps a toggle set through `toggle()`:
 
 ```php
 use UIAwesome\Html\Core\Component\Toggle;
+use UIAwesome\Html\Core\Component\Values\ToggleVariant;
 
 $toggle = Toggle::tag()
-    ->config($config, new ComponentContext('toggle', variant: 'menu-dropdown'))
+    ->config($config, new ComponentContext(ComponentName::TOGGLE, variant: ToggleVariant::MENU_DROPDOWN))
     ->content('Docs');
 ```
 
@@ -260,9 +175,10 @@ both hidden with `d-none`. The package ships no JavaScript, so the application s
 
 ```php
 use UIAwesome\Html\Core\Component\Toggle;
+use UIAwesome\Html\Core\Component\Values\ToggleVariant;
 
 echo Toggle::tag()
-    ->config($config, new ComponentContext('toggle', variant: 'selector-theme'))
+    ->config($config, new ComponentContext(ComponentName::TOGGLE, variant: ToggleVariant::SELECTOR_THEME))
     ->id('theme-selector')
     ->render();
 ```
